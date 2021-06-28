@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jugador;
+package modelo.jugador;
 
 /**
  *
@@ -11,7 +11,7 @@ package jugador;
  */
 public class Jugador {
     /**
-     * Atributos de la clase Jugador
+     * Atributos de la clase jugador
      */
     private int id; 
     private String nombre;
@@ -19,27 +19,9 @@ public class Jugador {
     private int partidasJugadas;
     private int partidasGanadas;
     private int partidasPerdidas;
-
-    /**
-     * Constructor por defecto de la clase Jugador
-     * @param id Almacena el id de cada jugador
-     * @param nombre Almacena el nombre de cada jugador
-     * @param apellido Almacena el apellido de cada jugador
-     * @param partidasJugadas Almacena la cantidad de partidas jugadas
-     * @param partidasGanadas Almacena la cantidad de partidas ganadas
-     * @param partidasPerdidas Almacena la cantidad de partidas perdidas
-     */
-    public Jugador(int id, String nombre, String apellido, int partidasJugadas, int partidasGanadas, int partidasPerdidas) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.partidasJugadas = partidasJugadas;
-        this.partidasGanadas = partidasGanadas;
-        this.partidasPerdidas = partidasPerdidas;
-    }
     
     /**
-     * Constructor que solo solicita el id, el nombre y el apellido
+     * Constructor de la clase jugador
      * @param id Almacena el id del jugador
      * @param nombre Almacena el nombre del jugador
      * @param apellido Almacena el apellido del jugador
@@ -77,9 +59,8 @@ public class Jugador {
         return apellido;
     }
 
-  
     /**
-     * Metodo para obtener las partidas jugadas del jugador
+     * Metodo para obtener las partidas jugadas por el jugador
      * @return 
      */
     public int getPartidasJugadas() {
@@ -87,15 +68,15 @@ public class Jugador {
     }
 
     /**
-     * Metodo para settear las partidas jugadas por el jugador
-     * @param partidasJugadas Partidas jugadas
+     * Metodo settear las partidas jugadas por el jugador
+     * @param partidasJugadas 
      */
     public void setPartidasJugadas(int partidasJugadas) {
         this.partidasJugadas = partidasJugadas;
     }
 
     /**
-     * Metodo para obtener las partidas ganadas por un jugador
+     * Metodo para obtener las partidas ganads por el jugador
      * @return 
      */
     public int getPartidasGanadas() {
@@ -103,15 +84,15 @@ public class Jugador {
     }
 
     /**
-     * Metodo para settear las partidas ganadas por un jugador
-     * @param partidasGanadas Partidas ganadas
+     * Metodo para setear las partidas ganadas por el jugador
+     * @param partidasGanadas 
      */
     public void setPartidasGanadas(int partidasGanadas) {
         this.partidasGanadas = partidasGanadas;
     }
 
     /**
-     * Metodo para obtener las partidas perdidas por un jugador
+     * Metodo para obtener las partidas perdidas por el jugador
      * @return 
      */
     public int getPartidasPerdidas() {
@@ -119,12 +100,22 @@ public class Jugador {
     }
 
     /**
-     * Metodo para settear las partidas perdidas por un jugador 
-     * @param partidasPerdidas Partidas perdidas
+     * Metodo para obtener las partidas perdidas del jugador
+     * @param partidasPerdidas 
      */
     public void setPartidasPerdidas(int partidasPerdidas) {
         this.partidasPerdidas = partidasPerdidas;
     }
+
+    /**
+     * Metodo to string
+     * @return 
+     */
+    @Override
+    public String toString() {
+        return "Jugador{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + '}';
+    }
+    
     
     
 }

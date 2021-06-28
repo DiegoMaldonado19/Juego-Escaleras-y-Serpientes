@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tablero;
+package enums;
 
 /**
  *
  * @author DIEGO MALDONADO
  */
-public class Tablero {
-    
+public enum TipoDeCasilla {
+    /**
+     * Clase de tipo enum, para asignar un tipo de casilla
+     */
+    VACIA, ADELANTO, RETROCESO, ESCALERA, SERPIENTE, PIERDE_TURNO
 }

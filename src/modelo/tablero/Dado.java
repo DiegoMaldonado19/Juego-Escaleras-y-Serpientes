@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dado;
+package modelo.tablero;
 
 /**
  *
@@ -11,15 +11,18 @@ package dado;
  */
 public class Dado {
     /**
-     * Constructor por defecto para la clase dado
+     * Clase dado para generar los numeros aleatorios para le movimiento
+     */
+    
+    /**
+     * Constructor por defecto
      */
     public Dado(){
-        
+    
     }
     
     /**
-     * Metodo para lanzar un dado, el cual retorna el valor entero del dado,
-     * entre 1 y 6
+     * Metodo para lanzar un dado y retornar el valor de ese dado
      * @return 
      */
     public int lanzarDado(){
