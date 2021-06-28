@@ -25,10 +25,10 @@ public class CreadorDeCasilla {
         Casilla[][] tablero = new Casilla[cantidadCasillasX][cantidadCasillasY];
         for (int i = 0; i < cantidadCasillasX; i++) {
             for (int j = 0; j < cantidadCasillasY; j++) {
-                SuperficieJLabel jlabel = new SuperficieJLabel(i+1, j+1,"Fila:" + (i + 1) + " Columna:" + (j + 1) );
+                SuperficieJLabel jlabel = new SuperficieJLabel(i+1, j+1,"Casilla ("+(i+1)+","+(j+1)+")");
               
-                 tableroAux = new Casilla(TipoDeCasilla.VACIA, jlabel,false);
-                 tablero[i][j] = tableroAux;
+                tableroAux = new Casilla(TipoDeCasilla.VACIA, jlabel,false);
+                tablero[i][j] = tableroAux;
             }
             
         }
