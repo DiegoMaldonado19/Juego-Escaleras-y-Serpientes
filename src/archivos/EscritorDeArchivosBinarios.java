@@ -9,6 +9,6 @@ package archivos;
  *
  * @author DIEGO MALDONADO
  */
-public class EscritorDeVehiculosBinarios {
+public class EscritorDeArchivosBinarios {
     
 }
