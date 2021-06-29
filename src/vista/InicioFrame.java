@@ -20,8 +20,8 @@ public class InicioFrame extends javax.swing.JFrame {
     /**
      * Arraylist de jugadores y variable entera que almacena la cantidad de jugadores en el juego
      */
-    ArrayList<Jugador> jugadores = new ArrayList<>();
-    int numeroJugadores;
+    private ArrayList<Jugador> jugadores = new ArrayList<>();
+    private int numeroJugadores;
     
     /**
      * Creates new form InicioFrame
