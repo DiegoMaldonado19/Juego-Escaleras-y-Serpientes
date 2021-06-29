@@ -14,8 +14,15 @@ import modelo.posicion.Posicion;
  * @author DIEGO MALDONADO
  */
 public class LectorDeArchivosEnTexto {
-    public Posicion[] posicion (File archivo) throws FileNotFoundException, IOException{
-        Posicion[] arregloPosiciones = new Posicion[100];
+    /**
+     * Constructor de la clase 
+     * @param archivo Pide como parametro un archivo de texto
+     * @return retorna un arreglo de posiciones
+     * @throws FileNotFoundException 
+     * @throws IOException 
+     */
+    public Posicion[] leerArchivo (File archivo) throws FileNotFoundException, IOException{
+        Posicion[] arregloPosiciones = new Posicion[10];
         FileReader fr = new FileReader(archivo);
         BufferedReader br = new BufferedReader(fr);
         int contador=0;
@@ -34,9 +41,14 @@ public class LectorDeArchivosEnTexto {
         return arregloPosiciones;
     }
     
+    /**
+     * Metodo para separar los campos de las lineas en el archivo de texto
+     * @param linea pide una linea de texto de tipo String
+     * @return 
+     */
     private String[] separarCampos(String linea) {
-        String inicioVehiculo = "tablero(";
-        String lineaDeCampos = linea.substring(inicioVehiculo.length(), linea.length() - 2);
+        String inicioTablero = "tablero(";
+        String lineaDeCampos = linea.substring(inicioTablero.length(), linea.length() - 2);
         System.out.println(lineaDeCampos);
         String[] campos = lineaDeCampos.split(",");
         return campos;

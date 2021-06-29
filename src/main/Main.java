@@ -5,6 +5,8 @@
  */
 package main;
 
+import controlador.ControladorJuego;
+import modelo.posicion.Posicion;
 import vista.TableroFrame;
 
 /**
@@ -17,6 +19,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        TableroFrame tableroJuego = new TableroFrame(8,8);
+        ControladorJuego juego = new ControladorJuego();
+        Posicion[] posicion = juego.cargaInicial();
+        TableroFrame tableroJuego = new TableroFrame(Integer.parseInt(posicion[0].getPosicionX()),Integer.parseInt(posicion[0].getPosicionY()));
     }
 }

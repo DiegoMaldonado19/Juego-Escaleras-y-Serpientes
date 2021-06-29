@@ -41,4 +41,11 @@ public class Posicion {
     public String getPosicionY() {
         return posicionY;
     }
+
+    @Override
+    public String toString() {
+        return "Posicion{" + "posicionX=" + posicionX + ", posicionY=" + posicionY + '}';
+    }
+    
+    
 }
