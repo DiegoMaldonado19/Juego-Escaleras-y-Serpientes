@@ -5,9 +5,12 @@
  */
 package vista;
 
+import archivos.EscritorDeArchivosBinarios;
 import controlador.ControladorTablero;
 import java.awt.GridLayout;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import modelo.jugador.Jugador;
 import modelo.tablero.Tablero;
@@ -25,6 +28,7 @@ public class TableroFrame extends javax.swing.JFrame {
     private Tablero tablero;
     private ArrayList<Jugador> jugadores;
     private int cantidadJugadores;
+    private EscritorDeArchivosBinarios escritorArchivos;
     /**
      * Creates new form TableroFrame
      */
@@ -33,33 +37,43 @@ public class TableroFrame extends javax.swing.JFrame {
      * Constructor del frame tablero
      * @param cantidadCasillasX Almacena la cantidad de casillas en X
      * @param cantidadCasillasY Almacena la cantidad de casillas en Y
+     * @param ventanaPapa Almacena una referencia del frame anterior
+     * @param jugadores Almacena los jugadores dentro de un array list
+     * @param cantidadJugadores Almacena la cantidad de jugadores en el juego
      */
     public TableroFrame(int cantidadCasillasX, int cantidadCasillasY, InicioFrame ventanaPapa, ArrayList<Jugador> jugadores,
     int cantidadJugadores) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.escritorArchivos = new EscritorDeArchivosBinarios();
         this.ventanaPapa = ventanaPapa;
         this.cantidadJugadores = cantidadJugadores;
         this.jugadores = jugadores;
         this.tableroPanel.setLayout(new GridLayout(cantidadCasillasX, cantidadCasillasY));
-        asignarDato(cantidadCasillasX, cantidadCasillasY);
+        asignarDato(cantidadCasillasX, cantidadCasillasY,jugadores);
     }
     
     /**
      * Metodo para asignar los datos a los atributos que se encuentran en este frame
      * @param cantidadX Almacena la cantidad de casillas en X
      * @param cantidadY Almacena la cantidad de casillas en Y
+     * @param jugadores Almacena un array list de jugadores
      */
-    public void asignarDato(int cantidadX, int cantidadY){
+    public void asignarDato(int cantidadX, int cantidadY, ArrayList<Jugador> jugadores){
         this.tablero = new Tablero(cantidadX, cantidadY);
         controladorDeTablero = new ControladorTablero(tableroPanel, tablero.getCasilla(), cantidadX, cantidadY);
         for(int i=0; i<cantidadJugadores-1; i++){
-            this.jugadoresTextArea.append(String.valueOf("\n"+this.jugadores.get(i).getId())+" "+this.jugadores.get(i).getNombre()+" "+
-                   this.jugadores.get(i).getApellido());
+            this.jugadoresTextArea.append("\n"+String.valueOf(jugadores.get(i).getId())+" "+jugadores.get(i).getNombre()+" "+
+                   jugadores.get(i).getApellido());
+        }
+        try{
+            this.escritorArchivos.guardarJugadores(jugadores);
+        }
+        catch(Exception ex){
+           ex.printStackTrace();
         }
     }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

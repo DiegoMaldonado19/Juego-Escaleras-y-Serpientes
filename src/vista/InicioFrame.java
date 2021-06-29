@@ -17,7 +17,10 @@ import modelo.posicion.Posicion;
  */
 public class InicioFrame extends javax.swing.JFrame {
     
-    ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+    /**
+     * Arraylist de jugadores y variable entera que almacena la cantidad de jugadores en el juego
+     */
+    ArrayList<Jugador> jugadores = new ArrayList<>();
     int numeroJugadores;
     
     /**
@@ -31,7 +34,10 @@ public class InicioFrame extends javax.swing.JFrame {
         this.numeroJugadores=1;
     }
 
-    
+    /**
+     * Metodo para inicializar un jugador cada vez que se toque el boton,
+     * este jugador se almacena en un arraylist de jugadores
+     */
     public void inicializarJugador(){
         this.jugadores.add(new Jugador(numeroJugadores, this.nombreField.getText(), this.apellidoField.getText()));
         this.nombreField.setText("");

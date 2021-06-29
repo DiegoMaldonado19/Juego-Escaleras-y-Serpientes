@@ -5,11 +5,13 @@
  */
 package modelo.jugador;
 
+import java.io.Serializable;
+
 /**
  *
  * @author DIEGO MALDONADO
  */
-public class Jugador {
+public class Jugador implements Serializable{
     /**
      * Atributos de la clase jugador
      */
