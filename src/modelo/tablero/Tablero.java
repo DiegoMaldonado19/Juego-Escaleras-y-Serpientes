@@ -5,6 +5,8 @@
  */
 package modelo.tablero;
 
+import controlador.CreadorDeCasilla;
+
 /**
  *
  * @author DIEGO MALDONADO

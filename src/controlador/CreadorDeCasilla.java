@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.tablero;
+package controlador;
 
 import enums.TipoDeCasilla;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import modelo.tablero.Casilla;
+import modelo.tablero.SuperficieJLabel;
 
 /**
  *
