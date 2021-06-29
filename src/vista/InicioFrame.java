@@ -5,19 +5,39 @@
  */
 package vista;
 
+import controlador.ControladorJuego;
+import java.util.ArrayList;
+import javax.swing.WindowConstants;
+import modelo.jugador.Jugador;
+import modelo.posicion.Posicion;
+
 /**
  *
- * @author KARIN MONTERROSO
+ * @author DIEGO MALDONADO
  */
 public class InicioFrame extends javax.swing.JFrame {
-
+    
+    ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+    int numeroJugadores;
+    
     /**
      * Creates new form InicioFrame
      */
     public InicioFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        this.numeroJugadores=1;
     }
 
+    
+    public void inicializarJugador(){
+        this.jugadores.add(new Jugador(numeroJugadores, this.nombreField.getText(), this.apellidoField.getText()));
+        this.nombreField.setText("");
+        this.apellidoField.setText("");
+        this.numeroJugadores++;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,24 +47,104 @@ public class InicioFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botonIngresarJugador = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        nombreField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        apellidoField = new javax.swing.JTextField();
+        botonJugar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        botonIngresarJugador.setText("Ingresar Jugador");
+        botonIngresarJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIngresarJugadorActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Nombre:");
+
+        nombreField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Apellido:");
+
+        botonJugar.setText("Jugar");
+        botonJugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonJugarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(apellidoField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(164, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonIngresarJugador)
+                .addGap(119, 119, 119)
+                .addComponent(botonJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(apellidoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonIngresarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void nombreFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreFieldActionPerformed
+
+    private void botonIngresarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarJugadorActionPerformed
+        inicializarJugador();
+    }//GEN-LAST:event_botonIngresarJugadorActionPerformed
+
+    private void botonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJugarActionPerformed
+        ControladorJuego juego = new ControladorJuego();
+        Posicion[] posicion = juego.cargaInicial();
+        TableroFrame tableroJuego = new TableroFrame(Integer.parseInt(posicion[0].getPosicionX()),Integer.parseInt(posicion[0].getPosicionY()), this, this.jugadores, this.numeroJugadores);
+        
+    }//GEN-LAST:event_botonJugarActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField apellidoField;
+    private javax.swing.JButton botonIngresarJugador;
+    private javax.swing.JButton botonJugar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField nombreField;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,7 +7,9 @@ package vista;
 
 import controlador.ControladorTablero;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.WindowConstants;
+import modelo.jugador.Jugador;
 import modelo.tablero.Tablero;
 
 /**
@@ -18,8 +20,11 @@ public class TableroFrame extends javax.swing.JFrame {
     /**
      * Atributos del frame
      */
+    private InicioFrame ventanaPapa;
     private ControladorTablero controladorDeTablero;
     private Tablero tablero;
+    private ArrayList<Jugador> jugadores;
+    private int cantidadJugadores;
     /**
      * Creates new form TableroFrame
      */
@@ -29,11 +34,14 @@ public class TableroFrame extends javax.swing.JFrame {
      * @param cantidadCasillasX Almacena la cantidad de casillas en X
      * @param cantidadCasillasY Almacena la cantidad de casillas en Y
      */
-    public TableroFrame(int cantidadCasillasX, int cantidadCasillasY) {
+    public TableroFrame(int cantidadCasillasX, int cantidadCasillasY, InicioFrame ventanaPapa, ArrayList<Jugador> jugadores,
+    int cantidadJugadores) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        this.ventanaPapa = ventanaPapa;
+        this.cantidadJugadores = cantidadJugadores;
+        this.jugadores = jugadores;
         this.tableroPanel.setLayout(new GridLayout(cantidadCasillasX, cantidadCasillasY));
         asignarDato(cantidadCasillasX, cantidadCasillasY);
     }
@@ -46,6 +54,10 @@ public class TableroFrame extends javax.swing.JFrame {
     public void asignarDato(int cantidadX, int cantidadY){
         this.tablero = new Tablero(cantidadX, cantidadY);
         controladorDeTablero = new ControladorTablero(tableroPanel, tablero.getCasilla(), cantidadX, cantidadY);
+        for(int i=0; i<cantidadJugadores-1; i++){
+            this.jugadoresTextArea.append(String.valueOf("\n"+this.jugadores.get(i).getId())+" "+this.jugadores.get(i).getNombre()+" "+
+                   this.jugadores.get(i).getApellido());
+        }
     }
     
     /**
@@ -58,6 +70,9 @@ public class TableroFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         tableroPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jugadoresTextArea = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,12 +80,18 @@ public class TableroFrame extends javax.swing.JFrame {
         tableroPanel.setLayout(tableroPanelLayout);
         tableroPanelLayout.setHorizontalGroup(
             tableroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGap(0, 527, Short.MAX_VALUE)
         );
         tableroPanelLayout.setVerticalGroup(
             tableroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 442, Short.MAX_VALUE)
         );
+
+        jugadoresTextArea.setColumns(20);
+        jugadoresTextArea.setRows(5);
+        jScrollPane1.setViewportView(jugadoresTextArea);
+
+        jLabel1.setText("Jugadores:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,8 +99,15 @@ public class TableroFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tableroPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(180, 180, 180))
+                .addComponent(tableroPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(jLabel1)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,6 +115,12 @@ public class TableroFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tableroPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(40, 40, 40))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(jLabel1)
+                .addGap(49, 49, 49)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -95,6 +129,9 @@ public class TableroFrame extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jugadoresTextArea;
     public javax.swing.JPanel tableroPanel;
     // End of variables declaration//GEN-END:variables
 }
